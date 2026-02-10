@@ -56,25 +56,33 @@ public class cards : MonoBehaviour
         }
     }
 
-    void Update()
-    {       
-        if (Input.GetKeyDown(KeyCode.LeftShift) && gamePhase != 0)
+    //Master Input ->
+    public void IncrementGamephase()
+    {
+        if (gamePhase != 0)
         {
             gamePhase++;
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.LeftControl) && gamePhase != 0)
+    public void ResetGamephase()
+    {
+        if (gamePhase != 0)
         {
             gamePhase = -1;
         }
-        
+    }
+
+    //Cards Independance ->
+    public void CardsUpdate()
+    {
         switch (gamePhase)
         {
             case 0:
                 if (shuffleTime > 1.5)
                 {
                     deck.transform.position = new Vector2(0, 2);
-                    deck.transform.Rotate(Vector3.forward * 180 * Time.deltaTime);                  
+                    deck.transform.Rotate(Vector3.forward * 180 * Time.deltaTime);
                 }
                 else if (shuffleTime > 1)
                 {
@@ -90,12 +98,12 @@ public class cards : MonoBehaviour
                 {
                     deck.transform.Rotate(Vector3.back * 180 * Time.deltaTime);
                 }
-                else 
+                else
                 {
                     deck.transform.position = new Vector2(5.25f, 0.5f);
                     deck1.transform.position = new Vector2(5.25f, 0.5f);
                     deck2.transform.position = new Vector2(5.25f, 0.5f);
-                    gamePhase++; 
+                    gamePhase++;
                 }
                 shuffleTime -= Time.deltaTime;
                 break;
@@ -114,7 +122,7 @@ public class cards : MonoBehaviour
                 cardArray[10].transform.position = new Vector2(-3.33f, 3);
                 cardArray[11].transform.position = new Vector2(3.33f, 3);
                 cardArray[12].transform.position = new Vector2(4.66f, 3);
-                break;           
+                break;
             case 2:
                 cardArray[0].transform.position = new Vector2(-3.5f, 0.5f);
                 cardArray[1].transform.position = new Vector2(-1.75f, 0.5f);
@@ -124,7 +132,7 @@ public class cards : MonoBehaviour
                 cardArray[3].transform.position = new Vector2(1.75f, 0.5f);
                 break;
             case 4:
-                cardArray[4].transform.position = new Vector2(3.5f, 0.5f);              
+                cardArray[4].transform.position = new Vector2(3.5f, 0.5f);
                 break;
             case 5:
                 CheckOutcome();
@@ -147,14 +155,14 @@ public class cards : MonoBehaviour
                         card.transform.Translate(Vector2.up * Time.deltaTime);
                     }
                     shuffleTime -= Time.deltaTime;
-                }        
+                }
                 break;
             default:
                 winningCards.Clear();
                 foreach (GameObject card in cardArray)
                 {
                     card.transform.position = new Vector2(10, 10);
-                }              
+                }
                 ResetRiver(riverNumArray, riverFaceArray);
                 for (int i = 0; i < playerAmount; i++)
                 {
@@ -177,7 +185,7 @@ public class cards : MonoBehaviour
         {
             numberAnimArray[i].SetInteger("num", riverNumArray[i]);
             faceAnimArray[i].SetInteger("face", riverFaceArray[i]);
-        }           
+        }
     }
 
     void ResetRiver(int[] nums, int[] faces)
