@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class textDisplay : MonoBehaviour
 {
-    public cards cards;
+    public cardGame cardScript;
 
     public GameObject shuffleTxt;
 
@@ -21,7 +21,7 @@ public class textDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cards.gamePhase == 0)
+        if (cardScript.gamePhase == 0)
         {
             shuffleTxt.transform.position = new Vector3(0, 0, -20);
             shuffleTxt.transform.localScale = new Vector3(scaleX, scaleY, scaleZ);

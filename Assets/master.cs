@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class master : MonoBehaviour
 {
-    public cards cardScript;
+    public cardGame cardScript;
+
+    public int menuPhase = 0;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        cardScript.CardsStart(5);
     }
 
     // Update is called once per frame
